@@ -9,7 +9,7 @@ data class Article(
     @SerializedName("content")
     val content: Any,
     @SerializedName("description")
-    val description: Any,
+    val description: String? = null,
     @SerializedName("publishedAt")
     val publishedAt: String,
     @SerializedName("source")
@@ -19,5 +19,5 @@ data class Article(
     @SerializedName("url")
     val url: String,
     @SerializedName("urlToImage")
-    val urlToImage: Any
+    val urlToImage: String? = null
 )
