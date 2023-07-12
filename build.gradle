@@ -10,6 +10,7 @@ buildscript {
         room_version = '2.5.2'
         exoplayer_version = '2.18.5'
         datastore_version = '1.0.0'
+        swiperefreshlayout_version = '1.1.0'
     }
 
     dependencies {

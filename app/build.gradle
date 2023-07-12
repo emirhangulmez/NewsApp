@@ -65,6 +65,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     // For debugging HTTP Client
     implementation "com.squareup.okhttp3:logging-interceptor:$interceptor_version"
+    // Swipe refresh layout
+    implementation "androidx.swiperefreshlayout.widget:$swiperefreshlayout_version"
     // For testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
