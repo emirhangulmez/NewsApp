@@ -1,5 +1,7 @@
 package com.emirhangulmez.newsapp.common
 
+import com.emirhangulmez.newsapp.BuildConfig
+
 object Constants {
 
     const val BASE_URL = "https://newsapi.org/"
@@ -9,7 +11,7 @@ object Constants {
     const val COUNTRY_QUERY_VALUE = "tr"
 
     const val API_KEY_QUERY_NAME = "apiKey"
-    const val API_KEY_QUERY_VALUE = "4a19e75f811b461991b826e71ede820d"
+    const val API_KEY_QUERY_VALUE = BuildConfig.API_KEY
 
 
 }
