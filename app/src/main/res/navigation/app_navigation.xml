@@ -17,5 +17,9 @@
     <fragment
         android:id="@+id/newsDetailFragment"
         android:name="com.emirhangulmez.newsapp.presentation.news_detail.NewsDetailFragment"
-        tools:layout="@layout/fragment_news_detail" />
+        tools:layout="@layout/fragment_news_detail" >
+        <argument
+            android:name="newsArg"
+            app:argType="com.emirhangulmez.newsapp.domain.entity.NewsArg" />
+    </fragment>
 </navigation>

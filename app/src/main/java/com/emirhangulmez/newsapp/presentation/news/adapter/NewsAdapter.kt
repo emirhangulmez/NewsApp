@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -17,6 +18,8 @@ import com.emirhangulmez.newsapp.common.Extensions.makeGone
 import com.emirhangulmez.newsapp.common.Extensions.makeVisible
 import com.emirhangulmez.newsapp.databinding.ItemNewsBinding
 import com.emirhangulmez.newsapp.domain.entity.ArticleEntity
+import com.emirhangulmez.newsapp.domain.entity.NewsArg
+import com.emirhangulmez.newsapp.presentation.news.NewsFragmentDirections
 
 class NewsAdapter : PagingDataAdapter<ArticleEntity, NewsAdapter.NewsAdapterVH>(ArticleDiff) {
 
@@ -25,6 +28,14 @@ class NewsAdapter : PagingDataAdapter<ArticleEntity, NewsAdapter.NewsAdapterVH>(
             titleTv.text = item.title
             descriptionTv.text = item.description
             sourceNameTv.text = item.sourceName
+
+            root.setOnClickListener {
+                Navigation.findNavController(itemView).navigate(
+                    NewsFragmentDirections.actionNewsFragmentToNewsDetailFragment(
+                        NewsArg(item.url)
+                    )
+                )
+            }
 
             if (item.urlToImage.isNotEmpty()) {
                 //Image Handling

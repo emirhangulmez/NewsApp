@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">News App</string>
     <string name="news_content_desc">News Picture</string>
+    <string name="get_back_content_desc">Get Back</string>
 </resources>
