@@ -16,10 +16,10 @@ class NewsRepositoryImpl @Inject constructor(
     private val articleEntityMapper: ArticleEntityMapper
 ) : NewsRepository {
 
-    override suspend fun getTopHeadlines(): Flow<Resource<List<ArticleEntity>>> = flow {
+    override fun getTopHeadlines(page: Int): Flow<Resource<List<ArticleEntity>>> = flow {
         try {
             emit(Resource.Loading())
-            emit(Resource.Success(articleEntityMapper.map(client.getTopHeadlines().articles)))
+            emit(Resource.Success(articleEntityMapper.map(client.getTopHeadlines(page = page).articles)))
         } catch (e: HttpException) {
             emit(Resource.Error(e.message.getOrWriteNull()))
         } catch (e: Exception) {

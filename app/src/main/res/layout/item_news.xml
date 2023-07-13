@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="10dp"
     android:elevation="0dp"
@@ -15,38 +15,51 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/newsPicture"
+            android:id="@+id/newsPictureIv"
             android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:background="@color/material_dynamic_secondary80"
+            android:background="@color/primary_200"
             android:contentDescription="@string/news_content_desc"
             android:src="@drawable/image_not_found"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="@+id/newsPictureIv"
+            app:layout_constraintEnd_toEndOf="@+id/newsPictureIv"
+            app:layout_constraintStart_toStartOf="@+id/newsPictureIv"
+            app:layout_constraintTop_toTopOf="@+id/newsPictureIv" />
+
         <TextView
             android:id="@+id/titleTv"
             android:layout_width="0dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/newsPicture"
+            app:layout_constraintEnd_toEndOf="@+id/newsPictureIv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newsPicture" />
+            app:layout_constraintTop_toBottomOf="@+id/newsPictureIv" />
 
         <TextView
             android:id="@+id/descriptionTv"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="center"
+            android:layout_marginHorizontal="10dp"
             android:maxLines="3"
             android:layout_marginBottom="3dp"
             android:textColor="@color/black"
