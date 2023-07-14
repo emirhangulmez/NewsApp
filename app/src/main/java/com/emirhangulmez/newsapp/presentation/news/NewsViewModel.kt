@@ -9,6 +9,7 @@ import androidx.paging.cachedIn
 import com.emirhangulmez.newsapp.domain.entity.ArticleEntity
 import com.emirhangulmez.newsapp.domain.usecase.TopHeadlinesPagerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,13 +21,16 @@ class NewsViewModel @Inject constructor(
     private val _topHeadlines = MutableLiveData<PagingData<ArticleEntity>>()
     val topHeadlines: LiveData<PagingData<ArticleEntity>> = _topHeadlines
 
-    init {
-        getTopHeadlines()
-    }
 
-    private fun getTopHeadlines() = viewModelScope.launch {
-        topHeadlinesPagerUseCase().cachedIn(viewModelScope).collect { pagingData ->
-            _topHeadlines.postValue(pagingData)
+    fun getTopHeadlines(coroutineScope: CoroutineScope? = viewModelScope) = viewModelScope.launch {
+        coroutineScope?.let {
+            topHeadlinesPagerUseCase().cachedIn(coroutineScope).collect { pagingData ->
+                _topHeadlines.postValue(pagingData)
+            }
+        } ?: kotlin.run {
+            topHeadlinesPagerUseCase().collect { pagingData ->
+                _topHeadlines.postValue(pagingData)
+            }
         }
     }
 }

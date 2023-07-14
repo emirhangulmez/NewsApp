@@ -26,6 +26,7 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
+            viewModel.getTopHeadlines()
             newsRv.adapter = adapter
 
             swipeRefresh.setColorSchemeColors(
