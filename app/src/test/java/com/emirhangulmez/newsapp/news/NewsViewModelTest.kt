@@ -5,6 +5,7 @@ import androidx.lifecycle.asFlow
 import androidx.paging.AsyncPagingDataDiffer
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.ListUpdateCallback
+import app.cash.turbine.test
 import com.emirhangulmez.newsapp.domain.usecase.TopHeadlinesPagerUseCase
 import com.emirhangulmez.newsapp.news.NewsTestDataFactory.articleEntityList
 import com.emirhangulmez.newsapp.presentation.news.NewsViewModel
@@ -12,6 +13,7 @@ import com.emirhangulmez.newsapp.presentation.news.adapter.NewsAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert
@@ -59,9 +61,15 @@ class NewsViewModelTest {
         )
 
         viewModel.getTopHeadlines(null)
-        viewModel.topHeadlines.asFlow().collect { pagingData ->
-            differ.submitData(pagingData)
-            Assert.assertEquals(articleEntityList, differ.snapshot().items)
+        launch {
+            viewModel.topHeadlines.asFlow().test {
+                differ.submitData(awaitItem())
+                Assert.assertEquals(articleEntityList, differ.snapshot().items)
+                cancelAndConsumeRemainingEvents()
+            }
+        }.apply {
+            join()
+            cancel()
         }
     }
 }
