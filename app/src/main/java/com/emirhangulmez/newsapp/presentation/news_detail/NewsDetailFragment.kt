@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
@@ -36,6 +37,8 @@ class NewsDetailFragment : Fragment(R.layout.fragment_news_detail) {
             Uri.parse(args.newsArg.url).let { uri ->
                 sourceUrlTv.text = uri.host
             }
+            webView.settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
             webView.settings.javaScriptEnabled = true
             webView.loadUrl(args.newsArg.url)
             webView.webViewClient = object : WebViewClient() {
